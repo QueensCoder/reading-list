@@ -18,3 +18,18 @@ test("if no books are provided the book list displays message of : 'No books to 
     screen.getByText(/^No books to read. Hello free time/)
   ).toHaveTextContent("No books to read. Hello free time");
 });
+
+test("if list of books are provided all of the books and authors will be displayed", () => {
+  const books = [
+    { title: "1984", author: "George Orwell", id: 1 },
+    { title: "Art of War", author: "Sun Tzu", id: 2 }
+  ];
+  render(
+    <BookContext.Provider value={{ books }}>
+      <BookList />
+    </BookContext.Provider>
+  );
+  // expect(
+  //   screen.getByText(/^No books to read. Hello free time/)
+  // ).toHaveTextContent("No books to read. Hello free time");
+});
