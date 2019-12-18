@@ -15,12 +15,15 @@ const NewBookForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
+      <label for="title">title</label>
       <input
+        name="title"
         type="text"
         placeholder="book title"
         value={title}
         onChange={e => setTitle(e.target.value)}
       />
+      <label htmlFor="author"></label>
       <input
         type="text"
         placeholder="author name"
