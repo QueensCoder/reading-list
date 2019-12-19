@@ -72,6 +72,15 @@ test("if use clicks on entry , the entry is removed from the book list by id", (
     { title: "Art of War", author: "Sun Tzu", id: 2 }
   ];
   render(<TestBookContext initialState={books} />);
+
+  // remove sun tzu art of war
   fireEvent.click(screen.getByText(/^Sun Tzu/));
+
+  // expect art of war to be not be on dom
   expect(screen.queryByText(/^Sun Tzu/)).toBeNull();
+  expect(screen.queryByText(/^Art of War/)).toBeNull();
+
+  // expect 1984 and george orwell to still be on dom
+  expect(screen.getByText(/^1984/)).toHaveTextContent("1984");
+  expect(screen.getByText(/^George Orwell/)).toHaveTextContent("George Orwell");
 });
