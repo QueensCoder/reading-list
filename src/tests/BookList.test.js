@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 
 import "@testing-library/jest-dom/extend-expect";
 // need to import this or else toHaveTextContent wont work
@@ -7,6 +7,7 @@ import "@testing-library/jest-dom/extend-expect";
 import { BookContext } from "../contexts/BookContext";
 import BookList from "../components/BookList";
 
+// if no
 test("if no books are provided the book list displays message of : 'No books to read. Hello free time'", () => {
   const books = [];
   render(
@@ -34,3 +35,16 @@ test("if list of books are provided all of the books and authors will be display
   expect(screen.getByText(/^Art of War/)).toHaveTextContent("Art of War");
   expect(screen.getByText(/^Sun Tzu/)).toHaveTextContent("Sun Tzu");
 });
+
+// test("if delete button is clicked on an entry, the entry is removed from the book list", () => {
+//   const books = [
+//     { title: "1984", author: "George Orwell", id: 1 },
+//     { title: "Art of War", author: "Sun Tzu", id: 2 }
+//   ];
+//   render(
+//     <BookContext.Provider value={{ books }}>
+//       <BookList />
+//     </BookContext.Provider>
+//   );
+//   fireEvent.click(screen.getByText(/^1984/))
+// });
