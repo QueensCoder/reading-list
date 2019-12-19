@@ -7,7 +7,6 @@ import "@testing-library/jest-dom/extend-expect";
 import { BookContext } from "../contexts/BookContext";
 import { BookList, NewBookForm } from "../components";
 
-// if no
 test("if no books are provided the book list displays message of : 'No books to read. Hello free time'", () => {
   const books = [];
   render(
@@ -40,20 +39,20 @@ test("if list of books are provided all of the books and authors will be display
 import bookReducer, { addBook, removeBook } from "../reducer/booksReducer";
 
 // component that simulates the book list and new book form
-const TestNewBookForm = () => {
-  const [books, dispatch] = useReducer(bookReducer, []);
+// initial state is where the reducer starts at allows for reuseability to component
+const TestBookContext = ({ initialState }) => {
+  const [books, dispatch] = useReducer(bookReducer, initialState);
   return (
-    <BookContext.Provider value={{ books, addBook, dispatch }}>
+    <BookContext.Provider value={{ books, addBook, removeBook, dispatch }}>
       <BookList />
       <NewBookForm />
     </BookContext.Provider>
   );
 };
 
-// //allows form to add
-test("new book form allows use to add and remove entry to new book list", () => {
-  // add a book
-  render(<TestNewBookForm />);
+//// add a book allows form to add to book list, starts with empty array
+test("new book form allows use to add entry to new book list", () => {
+  render(<TestBookContext initialState={[]} />);
   fireEvent.change(screen.getByLabelText(/^title/), {
     target: { value: "Art of War" }
   });
@@ -64,6 +63,15 @@ test("new book form allows use to add and remove entry to new book list", () => 
 
   expect(screen.getByText(/^Art of War/)).toHaveTextContent("Art of War");
   expect(screen.getByText(/^Sun Tzu/)).toHaveTextContent("Sun Tzu");
+});
 
-  //remove book
+//remove book
+test("if use clicks on entry , the entry is removed from the book list by id", () => {
+  const books = [
+    { title: "1984", author: "George Orwell", id: 1 },
+    { title: "Art of War", author: "Sun Tzu", id: 2 }
+  ];
+  render(<TestBookContext initialState={books} />);
+  fireEvent.click(screen.getByText(/^Sun Tzu/));
+  expect(screen.queryByText(/^Sun Tzu/)).toBeNull();
 });
