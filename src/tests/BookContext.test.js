@@ -21,6 +21,7 @@ const TestBookContext = ({ initialState }) => {
   );
 };
 
+// if booklist is empty
 test("if no books are provided the book list displays message of : 'No books to read. Hello free time'", () => {
   render(<TestBookContext initialState={[]} />);
   expect(
@@ -28,6 +29,7 @@ test("if no books are provided the book list displays message of : 'No books to 
   ).toHaveTextContent("No books to read. Hello free time");
 });
 
+// if booklist has books
 test("if list of books are provided all of the books and authors will be displayed", () => {
   const books = [
     { title: "1984", author: "George Orwell", id: 1 },
@@ -40,7 +42,7 @@ test("if list of books are provided all of the books and authors will be display
   expect(screen.getByText(/^Sun Tzu/)).toHaveTextContent("Sun Tzu");
 });
 
-//// add a book allows form to add to book list, starts with empty array
+// add a book allows form to add to book list, starts with empty array
 test("new book form allows use to add entry to new book list", () => {
   render(<TestBookContext initialState={[]} />);
   fireEvent.change(screen.getByLabelText(/^title/), {
@@ -55,7 +57,7 @@ test("new book form allows use to add entry to new book list", () => {
   expect(screen.getByText(/^Sun Tzu/)).toHaveTextContent("Sun Tzu");
 });
 
-//remove book
+//remove by book id
 test("if use clicks on entry , the entry is removed from the book list by id", () => {
   const books = [
     { title: "1984", author: "George Orwell", id: 1 },
