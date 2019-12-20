@@ -3,7 +3,7 @@ import bookReducer, { addBook, removeBook } from "../reducer/booksReducer";
 
 export const BookContext = createContext();
 
-const BookContextProvider = props => {
+const BookContextProvider = ({ children }) => {
   // use reducer takes a third argument, thiis function checks to see if there is
   // data inside of local storage if so the state becomes what is in local storage
   const [books, dispatch] = useReducer(bookReducer, [], () => {
@@ -19,7 +19,7 @@ const BookContextProvider = props => {
 
   return (
     <BookContext.Provider value={{ books, dispatch, addBook, removeBook }}>
-      {props.children}
+      {children}
     </BookContext.Provider>
   );
 };
