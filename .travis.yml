@@ -1,0 +1,8 @@
+sudo: required
+services:
+  - docker
+# what to run before installing
+before_install:
+  - docker build -t ozkhan/docker_react -f Dockerfile.dev .
+script:
+  - docker run -e CI=true ozkhan/docker_react npm run test
