@@ -1,4 +1,4 @@
-language: ruby
+#sudo is required for using docker
 sudo: required
 services:
   - docker

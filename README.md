@@ -33,3 +33,5 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
     app uses react-testing library to ensure the dom is updated properly for each user iteraction
 
     uses react-hooks and context api intead of redux for state management
+
+### Deploy to Heroku
