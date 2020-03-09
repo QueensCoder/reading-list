@@ -4,7 +4,7 @@ services:
     build:
       # in the event that there is no docker file look in curr dir and use
       # specified file
-      context: .
+      context: ./client
       dockerfile: Dockerfile.dev
     ports:
       - "3000:3000"
@@ -13,7 +13,7 @@ services:
       - /app/node_modules
 
       # map curr dir to /app
-      - .:/app
+      - ./client:/app
 
     # this test service does not require port mapping
     # it does require file mapping in order for us to see changes in the test files
@@ -21,10 +21,10 @@ services:
   # this tests service is another container for just running tests
   tests:
     build:
-      context: .
+      context: ./client
       dockerfile: Dockerfile.dev
     volumes:
       - /app/node_modules
-      - .:/app
+      - ./client:/app
       # this container needs to run different commands than the docker dev file on start
     command: ["npm", "run", "test"]
