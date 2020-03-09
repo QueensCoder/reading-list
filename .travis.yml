@@ -4,9 +4,9 @@ services:
   - docker
 # what to run before installing
 before_install:
-  - docker build -t ozkhan/docker_react -f Dockerfile.dev .
+  - docker build -t ozkhan/reading_client -f ./client/Dockerfile.dev ./client
 script:
-  - docker run -e CI=true ozkhan/docker_react npm run test
+  - docker run -e CI=true ozkhan/reading_client npm run test
 deploy:
   provider: heroku
   api_key:

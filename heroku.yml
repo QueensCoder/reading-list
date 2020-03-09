@@ -1,5 +1,5 @@
 docker:
-  web: Dockerfile
+  web: client/Dockerfile
 release:
   image: web
   command:
