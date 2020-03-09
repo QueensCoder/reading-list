@@ -4,7 +4,7 @@ services:
   - docker
 # what to run before installing
 before_install:
-  - docker build -t ozkhan/reading_client -f Dockerfile.dev ./client
+  - docker build -t ozkhan/reading_client -f ./client/Dockerfile.dev ./client
 script:
   - docker run -e CI=true ozkhan/reading_client npm run test
 deploy:
