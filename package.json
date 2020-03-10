@@ -1,0 +1,19 @@
+{
+  "name": "react-context-hooks",
+  "version": "1.0.0",
+  "description": "In the project directory, you can run:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QueensCoder/reading-list.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/QueensCoder/reading-list/issues"
+  },
+  "homepage": "https://github.com/QueensCoder/reading-list#readme"
+}
