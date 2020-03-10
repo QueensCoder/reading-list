@@ -1,5 +1,8 @@
 version: "3"
 services:
+  # ----------------------------------------------------------------------------
+  # CLIENT
+  # ----------------------------------------------------------------------------
   web:
     build:
       # in the event that there is no docker file look in curr dir and use
@@ -14,10 +17,23 @@ services:
 
       # map curr dir to /app
       - ./client:/app
-
-    # this test service does not require port mapping
-    # it does require file mapping in order for us to see changes in the test files
-
+  # ----------------------------------------------------------------------------
+  # API/SERVER
+  # ----------------------------------------------------------------------------
+  api:
+    build:
+      context: ./server
+      dockerfile: Dockerfile.dev
+    ports:
+      - "4000:4000"
+    volumes:
+      - /app/node_modules
+      - ./server:/app
+  # ----------------------------------------------------------------------------
+  # TESTS
+  # ----------------------------------------------------------------------------
+  # this test service does not require port mapping
+  # it does require file mapping in order for us to see changes in the test files
   # this tests service is another container for just running tests
   tests:
     build:
