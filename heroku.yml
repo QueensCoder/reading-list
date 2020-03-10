@@ -3,4 +3,10 @@ docker:
 release:
   image: web
   command:
-    - echo 'Starting server after deployment!';
+    - echo 'Starting client server after deployment!';
+    
+  api: server/Dockerfile
+release:
+  image: api
+  command:
+    - echo 'Starting api server after deployment!';
