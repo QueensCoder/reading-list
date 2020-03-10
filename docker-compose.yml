@@ -1,8 +1,5 @@
 version: "3"
 services:
-  # ----------------------------------------------------------------------------
-  # CLIENT
-  # ----------------------------------------------------------------------------
   web:
     build:
       # in the event that there is no docker file look in curr dir and use
