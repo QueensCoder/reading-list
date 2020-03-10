@@ -1,12 +1,10 @@
 docker:
   web: client/Dockerfile
-release:
-  image: web
-  command:
-    - echo 'Starting client server after deployment!';
-    
   api: server/Dockerfile
 release:
-  image: api
+  image:
+    - web
+    - api
   command:
-    - echo 'Starting api server after deployment!';
+    - echo 'Starting client server after deployment!';
+    - echo 'Starting api server succesfully'
