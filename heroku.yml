@@ -1,6 +1,5 @@
 docker:
   web: client/Dockerfile
-  # api: server/Dockerfile
 release:
   image: web
   command:
