@@ -1,14 +1,23 @@
-## Available Scripts
+## Overview
 
-In the project directory, you can run:
+    Demo of React Context API, React Hooks and using Store and reducer
+    Client can be deployed to heroku solo,
+    Server is underconstruction
+
+## Client
+
+From root dir cd client
+
+In the client directory, you can run:
+
+npm start
+
+npm test
 
 ### `npm start`
 
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
 
 ### `npm test`
 
@@ -17,13 +26,31 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 
 ### `Testing Suite`
 
+\*\*\* Has issue with Mac OS Catalina, npm test works on Linux and older mac OS
+npm test will work with docker container see run app.
+
+    Using React Testing library
+
+    Allows us to test what is on the dom as opposed to what is inside of the store.
+    See docs:
+
+    https://testing-library.com/docs/react-testing-library/intro
+
+    see client tests in client/src/tests
+
+    see .travis.yml for CI/CD configuration
+    before install a dev version of app is spun up and each test suite is run
+    see before install and script in travis
+
 ### Run app
 
-    in root dir
+    in root dir to start whole app:
 
-    npm start  or docker-compose up --build
+        docker-compose up --build
 
-    app is found on local host 3000
+    client is found on local host 3000
+
+    server is on port 4000
 
 ### Use app
 
@@ -36,5 +63,19 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 
 ### Deploy to Heroku
 
-    test
-    Use heroku authorizations:create for production apps, use heroku auth:token for development.
+    Use heroku authorizations:create for production apps
+    use heroku auth:token for development.
+
+    any pull request that merges a branch to master will initiate travis to perform
+    tests before deploying to heroku
+
+### Todos
+
+    redo front end using typescript, move from function components to class component
+    container deploy to heroku needs to be re configured see heroku.yml
+    need testing suite for api, db
+    include nginx for routing
+    add redis
+    add db folder in root dir - use MLab or Mongo for to have data persist
+
+        db may require its own container in development
